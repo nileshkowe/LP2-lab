@@ -1,11 +1,6 @@
 from collections import deque
+
 class Graph:
-    # example of adjacency list (or rather map)
-    # adjacency_list = {
-    # 'A': [('B', 1), ('C', 3), ('D', 7)],
-    # 'B': [('D', 5)],
-    # 'C': [('D', 12)]
-    # }
 
     def __init__(self, adjacency_list):
         self.adjacency_list = adjacency_list
@@ -16,10 +11,16 @@ class Graph:
     # heuristic function with equal values for all nodes
     def h(self, n):
         H = {
-            'A': 1,
-            'B': 1,
-            'C': 1,
-            'D': 1
+            'A': 10,
+            'B': 8,
+            'C': 5,
+            'D': 7,
+            'E': 3,
+            'F': 6,
+            'G': 5,
+            'H': 3,
+            'I': 1,
+            'J': 0
         }
 
         return H[n]
@@ -100,9 +101,14 @@ class Graph:
         return None
 
 adjacency_list = {
-    'A': [('B', 1), ('C', 3), ('D', 7)],
-    'B': [('D', 5)],
-    'C': [('D', 12)]
+    'A': [('B', 6), ('F', 3)],
+    'B': [('C', 3), ('D', 2)],
+    'C': [('E', 5), ('D', 1), ('B', 3)],
+    'D': [('E', 8), ('C', 1)],
+    'E': [('I', 5), ('J', 5)],
+    'F': [('G', 1), ('H', 7)],
+    'G': [('I', 3)],
+    'I': [('E', 5), ('J', 3), ('H', 2), ('G', 3)]
 }
 graph1 = Graph(adjacency_list)
-graph1.a_star_algorithm('A', 'D')
+graph1.a_star_algorithm('A', 'J')
